@@ -11,7 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
+    String login = "igor";
+    String senha = "dani";
     EditText editText, editText2;
     TextView textView;
     Button button;
@@ -23,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         editText = (EditText)findViewById(R.id.editText);
         editText2 = (EditText)findViewById(R.id.editText2);
         button = (Button) findViewById(R.id.button);
-
+        textView = (TextView)findViewById(R.id.textView);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void verifica(){
-        if(editText.getText().toString().equals("igor") && editText2.getText().toString().equals("dani")){
+        if(editText.getText().toString().equals(login) && editText2.getText().toString().equals(senha)){
             Toast.makeText(this, "Login correto", Toast.LENGTH_SHORT).show();
             button.setEnabled(false);
             editText.setEnabled(false);
@@ -41,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, Main2Activity.class);
             startActivity(intent);
 
-        } else if (editText.getText().toString().equals("") || editText2.getText().toString().equals("")){
+        } else if (editText.getText().toString().equals("") && editText2.getText().toString().equals("")){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("login/senha em branco");
+            builder.setTitle("login e senha em branco");
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -52,10 +56,14 @@ public class MainActivity extends AppCompatActivity {
             });
             alerta = builder.create();
             alerta.show();
-        } else {
+        } else if (editText.getText().toString().equals("")) {
+            Toast.makeText(this, "login em branco", Toast.LENGTH_SHORT).show();
+        } else if (editText2.getText().toString().equals("")){
+            Toast.makeText(this, "Senha em branco", Toast.LENGTH_SHORT).show();
+        }else {
             editText.setText("");
             editText2.setText("");
-            Toast.makeText(this, "Login/Senha errados", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Login e Senha errados", Toast.LENGTH_SHORT).show();
         }
     }
 }

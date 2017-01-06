@@ -6,12 +6,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main2Activity extends AppCompatActivity {
-TextView textView;
+TextView logged;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        textView = (TextView)findViewById(R.id.textView);
+        logged = (TextView)findViewById(R.id.textView);
         Toast.makeText(this, "LOGIN CORRETO!!!!", Toast.LENGTH_SHORT).show();
     }
 }
